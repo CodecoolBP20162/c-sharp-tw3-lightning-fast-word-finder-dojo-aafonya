@@ -22,29 +22,49 @@ namespace LightningFastWordFinder
             List<string> longestWords = new List<string>();
             for(int i = 0; i < text.Length; i++)
             {
-                if (char.IsWhiteSpace(text[i]) || text[i].Equals(@"\s") )
+                if (end - begin > 0 && true == text.Substring(begin, end - begin).Contains("patriarch"))
                 {
-                    if (beginOrEnd)
-                    {
-                        begin = i + 1;
-                        beginOrEnd = !beginOrEnd;
-
-                    } else
-                    {
-                        end = i;
-                        beginOrEnd = !beginOrEnd;
-
-                        if (end - begin > longest)
-                        {
-                            longest = end - begin;
-                            beginIndex = begin;
-                            endIndex = end;
-                            string longestWord = text.Substring(beginIndex, (endIndex - beginIndex));
-                            longestWords.Add(longestWord);
-                        }
-
-                    }
+                    Console.Write("woo");
                 }
+                end = i;
+                if (!char.IsLetter(text[i]))
+                {
+                    if (end - begin > longest)
+                    {
+                        longest = end - begin;
+                        beginIndex = begin;
+                        endIndex = end;
+                        string longestWord = text.Substring(beginIndex, (endIndex - beginIndex));
+                        longestWords.Add(longestWord);
+                    }
+                    begin = i + 1;
+                    end = begin;
+                }
+                /*
+                                if (char.IsWhiteSpace(text[i]) || text[i].Equals(@"\s") || text[i].Equals(" "))
+                                {
+                                    if (beginOrEnd)
+                                    {
+                                        begin = i + 1;
+                                        beginOrEnd = !beginOrEnd;
+
+                                    } else
+                                    {
+                                        end = i;
+                                        beginOrEnd = !beginOrEnd;
+
+                                        if (end - begin > longest)
+                                        {
+                                            longest = end - begin;
+                                            beginIndex = begin;
+                                            endIndex = end;
+                                            string longestWord = text.Substring(beginIndex, (endIndex - beginIndex));
+                                            longestWords.Add(longestWord);
+                                        }
+
+                                    }
+                                }
+                                */
             }
 
             
